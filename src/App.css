@@ -1,0 +1,266 @@
+/* src/app.css */
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #2563eb;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  color: #bfdbfe;
+}
+
+.navbar .nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar .nav-links a {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+/* Headings */
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Swiper Carousel */
+.swiper {
+  margin-bottom: 2rem;
+}
+
+.swiper-slide {
+  height: 16rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+}
+
+.swiper-slide:nth-child(1) {
+  background-color: #bfdbfe;
+}
+
+.swiper-slide:nth-child(2) {
+  background-color: #bbf7d0;
+}
+
+.swiper-slide p {
+  font-size: 1.25rem;
+}
+
+/* Search Form */
+.search-form {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.search-form label {
+  display: block;
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+}
+
+.search-form select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.search-form select:disabled {
+  background-color: #f3f4f6;
+}
+
+.search-form button {
+  width: 100%;
+  background-color: #2563eb;
+  color: white;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  background-color: #1d4ed8;
+}
+
+/* Medical Center Card */
+.medical-center-card {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.medical-center-card p {
+  color: #4b5563;
+}
+
+.medical-center-card button {
+  margin-top: 1rem;
+  background-color: #2563eb;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.medical-center-card button:hover {
+  background-color: #1d4ed8;
+}
+
+/* Grid for Cards */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Booking Form */
+.booking-form {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+}
+
+.booking-form select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.booking-form .time-slots {
+  margin-bottom: 1rem;
+}
+
+.booking-form .time-slots p {
+  font-weight: 600;
+}
+
+.booking-form .time-slots .time-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.booking-form .time-slots button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.booking-form .time-slots button.active {
+  background-color: #2563eb;
+  color: white;
+}
+
+.booking-form .time-slots button:not(.active) {
+  background-color: #e5e7eb;
+}
+
+.booking-form button.confirm {
+  width: 100%;
+  background-color: #2563eb;
+  color: white;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.booking-form button.confirm:hover {
+  background-color: #1d4ed8;
+}
+
+.booking-form button.confirm:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Booking Card */
+.booking-card {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.booking-card p {
+  color: #4b5563;
+}
