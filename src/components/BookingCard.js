@@ -1,6 +1,10 @@
 import React from 'react';
 
 function BookingCard({ booking }) {
+    if (!booking || !booking.hospital) {
+        return <div>No booking data available</div>;
+    }
+
     const { hospital, patientName, date } = booking;
 
     return (
