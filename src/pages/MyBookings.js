@@ -1,26 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import BookingCard from '../components/BookingCard';
 
 function MyBookings() {
-    const [bookings, setBookings] = useState([]);
+    const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
 
-    useEffect(() => {
-        const storedBookings = JSON.parse(localStorage.getItem('bookings')) || [];
-        setBookings(storedBookings);
-    }, []);
+    if (bookings.length === 0) {
+        return <div>No bookings found.</div>;
+    }
 
     return (
-        <div className="container">
-            <h1>My Bookings</h1>
-            {bookings.length === 0 ? (
-                <p>No bookings found.</p>
-            ) : (
-                <div className="grid">
-                    {bookings.map((booking, index) => (
-                        <BookingCard key={index} booking={booking} />
-                    ))}
-                </div>
-            )}
+        <div className="my-bookings">
+            <h2>My Bookings</h2>
+            {bookings.map((booking, index) => (
+                <BookingCard key={index} booking={booking} />
+            ))}
         </div>
     );
 }

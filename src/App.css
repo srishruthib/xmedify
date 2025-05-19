@@ -141,6 +141,55 @@ h3 {
   background-color: #1d4ed8;
 }
 
+.search-form button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Custom Dropdown for SearchForm */
+.dropdown-toggle {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  background-color: white;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.dropdown-toggle:hover {
+  background-color: #f3f4f6;
+}
+
+.dropdown-menu {
+  list-style: none;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  max-width: 500px;
+  z-index: 10;
+  display: none;
+  /* Hide by default */
+}
+
+.dropdown-menu.visible {
+  display: block;
+  /* Show when visible class is applied */
+}
+
+.dropdown-item {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #e5e7eb;
+}
+
 /* Medical Center Card */
 .medical-center-card {
   background-color: white;

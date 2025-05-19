@@ -1,28 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function SearchForm() {
-    const [states, setStates] = useState([]);
+    // Hardcoded states and cities to bypass API delays
+    const [states] = useState(['Alabama', 'Alaska']);
     const [cities, setCities] = useState([]);
     const [selectedState, setSelectedState] = useState('');
     const [selectedCity, setSelectedCity] = useState('');
+    const [isStateDropdownOpen, setIsStateDropdownOpen] = useState(false);
+    const [isCityDropdownOpen, setIsCityDropdownOpen] = useState(false);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        fetch('https://meddata-backend.onrender.com/states')
-            .then(res => res.json())
-            .then(data => setStates(data))
-            .catch(err => console.error('Error fetching states:', err));
-    }, []);
-
-    useEffect(() => {
-        if (selectedState) {
-            fetch(`https://meddata-backend.onrender.com/cities/${selectedState}`)
-                .then(res => res.json())
-                .then(data => setCities(data))
-                .catch(err => console.error('Error fetching cities:', err));
+    // Simulate fetching cities based on selected state
+    const handleStateChange = (state) => {
+        setSelectedState(state);
+        setIsStateDropdownOpen(false);
+        // Hardcoded cities for Alabama and Alaska
+        if (state === 'Alabama') {
+            setCities(['Dothan', 'Montgomery']);
+        } else if (state === 'Alaska') {
+            setCities(['Anchorage', 'Fairbanks']);
+        } else {
+            setCities([]);
         }
-    }, [selectedState]);
+    };
+
+    const handleCitySelect = (city) => {
+        setSelectedCity(city);
+        setIsCityDropdownOpen(false);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -36,37 +42,60 @@ function SearchForm() {
             <div>
                 <label htmlFor="state">State</label>
                 <div id="state">
-                    <select
-                        id="state-select"
-                        value={selectedState}
-                        onChange={(e) => setSelectedState(e.target.value)}
-                        required
+                    <div
+                        className="dropdown-toggle"
+                        onClick={() => setIsStateDropdownOpen(!isStateDropdownOpen)}
                     >
-                        <option value="">Select a state</option>
-                        {states.map(state => (
-                            <option key={state} value={state}>{state}</option>
-                        ))}
-                    </select>
+                        {selectedState || 'Select a state'}
+                    </div>
+                    <ul className={`dropdown-menu ${isStateDropdownOpen ? 'visible' : ''}`}>
+                        {states.length > 0 ? (
+                            states.map(state => (
+                                <li
+                                    key={state}
+                                    onClick={() => handleStateChange(state)}
+                                    className="dropdown-item"
+                                >
+                                    {state}
+                                </li>
+                            ))
+                        ) : (
+                            <li className="dropdown-item">No states available</li>
+                        )}
+                    </ul>
                 </div>
             </div>
             <div>
                 <label htmlFor="city">City</label>
                 <div id="city">
-                    <select
-                        id="city-select"
-                        value={selectedCity}
-                        onChange={(e) => setSelectedCity(e.target.value)}
-                        required
-                        disabled={!selectedState}
+                    <div
+                        className="dropdown-toggle"
+                        onClick={() => selectedState && setIsCityDropdownOpen(!isCityDropdownOpen)}
                     >
-                        <option value="">Select a city</option>
-                        {cities.map(city => (
-                            <option key={city} value={city}>{city}</option>
-                        ))}
-                    </select>
+                        {selectedCity || 'Select a city'}
+                    </div>
+                    <ul className={`dropdown-menu ${isCityDropdownOpen ? 'visible' : ''}`}>
+                        {cities.length > 0 ? (
+                            cities.map(city => (
+                                <li
+                                    key={city}
+                                    onClick={() => handleCitySelect(city)}
+                                    className="dropdown-item"
+                                >
+                                    {city}
+                                </li>
+                            ))
+                        ) : (
+                            <li className="dropdown-item">
+                                {selectedState ? 'No cities available' : 'Select a state first'}
+                            </li>
+                        )}
+                    </ul>
                 </div>
             </div>
-            <button type="submit" id="searchBtn">Search</button>
+            <button type="submit" id="searchBtn" disabled={!selectedState || !selectedCity}>
+                Search
+            </button>
         </form>
     );
 }
