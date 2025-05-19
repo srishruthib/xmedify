@@ -1,12 +1,19 @@
 import React from 'react';
 
 function BookingCard({ booking }) {
+    const { hospital, patientName, date } = booking;
+
     return (
         <div className="booking-card">
-            <h3>{booking.hospitalName}</h3>
-            <p>{booking.address}, {booking.city}, {booking.state} {booking.zip}</p>
-            <p>Date: {new Date(booking.date).toLocaleDateString()}</p>
-            <p>Time: {booking.time}</p>
+            <h3>{hospital.name}</h3>
+            <p>{hospital.address}</p>
+            <p>
+                {hospital.city}, {hospital.state} {hospital.zip}
+            </p>
+            <p>Type: {hospital.type}</p>
+            <p>Rating: {hospital.rating}</p>
+            <p>Patient: {patientName}</p>
+            <p>Date: {date}</p>
         </div>
     );
 }
